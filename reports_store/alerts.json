@@ -1,0 +1,326 @@
+[
+  {
+    "id": "1f956e22-e3e7-4e47-8c54-5e695bc6a7ff",
+    "level": "Normal",
+    "patient": {
+      "id": "121",
+      "name": "suresh"
+    },
+    "reason": "Low risk score (0/20) | Mild viral upper respiratory infection with stable vitals and low risk level",
+    "score": 0,
+    "source": "fusion",
+    "status": "new",
+    "acknowledgedBy": null,
+    "acknowledgedAt": null,
+    "resolvedBy": null,
+    "resolvedAt": null,
+    "resolutionNotes": "",
+    "assignedTo": null,
+    "createdAt": "2025-11-18T12:59:12.229Z",
+    "updatedAt": "2025-11-18T12:59:12.229Z",
+    "timestamp": "2025-11-18T12:59:11.937Z"
+  },
+  {
+    "id": "4ae335e0-0e7b-435d-b47d-43a29b707639",
+    "level": "Priority",
+    "patient": {
+      "id": "unknown",
+      "name": "Unknown Patient"
+    },
+    "reason": "Moderate risk: WBC 11-14.9 (+1), Multiple major comorbidities (+2) | Patient is afebrile, hemodynamically stable, and discharged in stable condition with good prognosis",
+    "score": 4,
+    "source": "fusion",
+    "status": "new",
+    "acknowledgedBy": null,
+    "acknowledgedAt": null,
+    "resolvedBy": null,
+    "resolvedAt": null,
+    "resolutionNotes": "",
+    "assignedTo": null,
+    "createdAt": "2025-11-18T12:56:58.086Z",
+    "updatedAt": "2025-11-18T12:56:58.086Z",
+    "timestamp": "2025-11-18T12:56:57.772Z"
+  },
+  {
+    "id": "838da662-59ad-4e5a-980f-0d39597a89fb",
+    "level": "Normal",
+    "patient": {
+      "id": "127",
+      "name": "rani"
+    },
+    "reason": "Low risk score (0/20) | Mild throat irritation with stable vitals and no concerning symptoms",
+    "score": 0,
+    "source": "fusion",
+    "status": "new",
+    "acknowledgedBy": null,
+    "acknowledgedAt": null,
+    "resolvedBy": null,
+    "resolvedAt": null,
+    "resolutionNotes": "",
+    "assignedTo": null,
+    "createdAt": "2025-11-18T06:49:03.482Z",
+    "updatedAt": "2025-11-18T06:49:03.482Z",
+    "timestamp": "2025-11-18T06:49:03.208Z"
+  },
+  {
+    "id": "9ba271ee-846e-4e3e-ae69-c37bd4fddb4b",
+    "level": "Priority",
+    "patient": {
+      "id": "127",
+      "name": "sammy"
+    },
+    "reason": "High risk: High-risk procedure: pci (+3), On anticoagulant/antiplatelet therapy (+1) | Patient is post-PCI with elevated troponin but stable vitals and has a follow-up plan in place",
+    "score": 11,
+    "source": "fusion",
+    "status": "new",
+    "acknowledgedBy": null,
+    "acknowledgedAt": null,
+    "resolvedBy": null,
+    "resolvedAt": null,
+    "resolutionNotes": "",
+    "assignedTo": null,
+    "createdAt": "2025-11-18T06:39:46.643Z",
+    "updatedAt": "2025-11-18T06:39:46.643Z",
+    "timestamp": "2025-11-18T06:39:46.334Z"
+  },
+  {
+    "id": "1de195e7-ae5e-443d-a6d1-44108a36634f",
+    "level": "Priority",
+    "patient": {
+      "id": "113",
+      "name": "sushi"
+    },
+    "reason": "High risk: High-risk procedure: pci (+3), On anticoagulant/antiplatelet therapy (+1) | Patient is post-PCI with elevated troponin but stable vitals and under medication, no immediate life-threatening symptoms reported",
+    "score": 11,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:28:37.929Z"
+  },
+  {
+    "id": "8bc259ac-3bc0-4656-afcc-e4a87aadcd8c",
+    "level": "Priority",
+    "patient": {
+      "id": "112",
+      "name": "ameena"
+    },
+    "reason": "Moderate risk: Major comorbidity (+1), Severe anemia (Hb<7) (+4) | Stable vitals and managed chronic condition with follow-up scheduled",
+    "score": 5,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:28:01.972Z"
+  },
+  {
+    "id": "2b7a11f9-e7df-41aa-af7b-e9387041cace",
+    "level": "Normal",
+    "patient": {
+      "id": "111",
+      "name": "rina"
+    },
+    "reason": "Low risk score (0/20) | Mild viral upper respiratory infection with stable vitals and low risk level",
+    "score": 0,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:27:35.085Z"
+  },
+  {
+    "id": "72a03532-f94d-47f5-b689-7541915cd001",
+    "level": "Priority",
+    "patient": {
+      "id": "129",
+      "name": "rashi"
+    },
+    "reason": "High risk: High-risk procedure: pci (+3), On anticoagulant/antiplatelet therapy (+1) | Patient is post-PCI with elevated troponin but stable vitals and under medication, no immediate life-threatening symptoms reported",
+    "score": 11,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:25:07.205Z"
+  },
+  {
+    "id": "6fa835ef-ed97-4f94-a705-2eda83de7b7a",
+    "level": "Priority",
+    "patient": {
+      "id": "130",
+      "name": "vasu"
+    },
+    "reason": "Moderate risk: Respiratory symptoms (+3), Major comorbidity (+1) | High risk congestive heart failure exacerbation with concerning vitals and symptoms",
+    "score": 4,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:23:46.026Z"
+  },
+  {
+    "id": "2d773feb-c753-4256-831a-f3be4474ca03",
+    "level": "Priority",
+    "patient": {
+      "id": "127",
+      "name": "ashi"
+    },
+    "reason": "Moderate risk: WBC 11-14.9 (+1), Multiple major comorbidities (+2) | Patient is being discharged in stable condition with no life-threatening symptoms reported",
+    "score": 4,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:23:21.099Z"
+  },
+  {
+    "id": "f937208e-88ed-4425-a3b4-f079496b087d",
+    "level": "Normal",
+    "patient": {
+      "id": "127",
+      "name": "raju"
+    },
+    "reason": "Low risk score (0/20) | Mild viral upper respiratory infection with stable vitals and no concerning symptoms",
+    "score": 0,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:18:43.888Z"
+  },
+  {
+    "id": "3eb5c593-a7a2-49d1-a979-81706be89db6",
+    "level": "Priority",
+    "patient": {
+      "id": "126",
+      "name": "sham"
+    },
+    "reason": "Moderate risk: Major comorbidity (+1), Severe anemia (Hb<7) (+4) | Stable vitals and managed chronic condition with no acute distress",
+    "score": 5,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:18:15.522Z"
+  },
+  {
+    "id": "8c8d80f7-623a-412e-8dfe-4c50b9858c0f",
+    "level": "Priority",
+    "patient": {
+      "id": "125",
+      "name": "rani"
+    },
+    "reason": "High risk: High-risk procedure: pci (+3), On anticoagulant/antiplatelet therapy (+1) | Patient is post-PCI with elevated troponin but stable vitals and under medication, no immediate life-threatening symptoms reported",
+    "score": 11,
+    "source": "fusion",
+    "timestamp": "2025-11-18T06:17:37.634Z"
+  },
+  {
+    "id": "eb726592-5095-4a05-af89-b9678f628697",
+    "level": "Normal",
+    "patient": {
+      "id": "124",
+      "name": "sally"
+    },
+    "reason": "High risk congestive heart failure exacerbation with concerning vitals and symptoms",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T06:12:44.524Z"
+  },
+  {
+    "id": "1e8e5dd1-8bdd-4aff-bad8-e0f3f4f2d09a",
+    "level": "Normal",
+    "patient": {
+      "id": "123",
+      "name": "sarina"
+    },
+    "reason": "Stable vitals and managed chronic condition with no acute distress",
+    "score": 5,
+    "source": "llm",
+    "timestamp": "2025-11-18T06:12:13.638Z"
+  },
+  {
+    "id": "8f1bfc0c-3719-4f8b-b570-489943ae718e",
+    "level": "Normal",
+    "patient": {
+      "id": "122",
+      "name": "sammy"
+    },
+    "reason": "Mild viral upper respiratory infection with stable vitals and low risk level",
+    "score": null,
+    "source": "llm",
+    "timestamp": "2025-11-18T06:11:38.521Z"
+  },
+  {
+    "id": "66289188-1a76-4612-9c34-c80a6cab63ea",
+    "level": "Normal",
+    "patient": {
+      "id": "121",
+      "name": "suresh"
+    },
+    "reason": "Stable vitals and managed chronic condition with no acute distress",
+    "score": 5,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:49:08.571Z"
+  },
+  {
+    "id": "5c8ce437-d824-49cd-974d-3f6e155678b9",
+    "level": "Normal",
+    "patient": {
+      "id": "ramesh",
+      "name": "Unknown Patient"
+    },
+    "reason": "High risk congestive heart failure exacerbation with concerning vitals and symptoms",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:40:47.769Z"
+  },
+  {
+    "id": "a93faf78-3e20-4a6a-89fe-a66e7a439c16",
+    "level": "Normal",
+    "patient": {
+      "id": "unknown",
+      "name": "Unknown Patient"
+    },
+    "reason": "High risk congestive heart failure exacerbation with concerning vitals and symptoms",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:40:37.522Z"
+  },
+  {
+    "id": "e66921ae-a480-4da0-8e6a-7a12aacb311a",
+    "level": "Normal",
+    "patient": {
+      "id": "ramesh",
+      "name": "Unknown Patient"
+    },
+    "reason": "Patient is afebrile, hemodynamically stable, and discharged in stable condition with good prognosis",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:33:38.995Z"
+  },
+  {
+    "id": "312a5a0d-20af-469e-8668-aa7df69605d6",
+    "level": "Normal",
+    "patient": {
+      "id": "unknown",
+      "name": "Unknown Patient"
+    },
+    "reason": "Patient is afebrile, hemodynamically stable, and discharged in stable condition with good prognosis",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:33:29.223Z"
+  },
+  {
+    "id": "80231f77-6ee1-4dc3-a140-15d0f94290da",
+    "level": "Normal",
+    "patient": {
+      "id": "ramesh",
+      "name": "Unknown Patient"
+    },
+    "reason": "Patient is being discharged in stable condition with good prognosis and no life-threatening symptoms present",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:29:12.084Z"
+  },
+  {
+    "id": "44d5901a-a99f-4649-8af7-77b3a66ac352",
+    "level": "Normal",
+    "patient": {
+      "id": "unknown",
+      "name": "Unknown Patient"
+    },
+    "reason": "Patient is being discharged in stable condition with good prognosis and no life-threatening symptoms present",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:27:32.662Z"
+  },
+  {
+    "id": "ca9d52c1-4386-44cf-93f7-9b38e7fd80bb",
+    "level": "Normal",
+    "patient": {
+      "id": "unknown",
+      "name": "Unknown Patient"
+    },
+    "reason": "Patient is afebrile, hemodynamically stable, and discharged in stable condition with good prognosis",
+    "score": 4,
+    "source": "llm",
+    "timestamp": "2025-11-18T05:18:14.045Z"
+  }
+]
