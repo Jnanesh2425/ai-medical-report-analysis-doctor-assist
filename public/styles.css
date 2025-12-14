@@ -1,9 +1,0 @@
-﻿:root{--bg:#f4fbff;--card:#ffffff;--muted:#6b7280;}
-*{box-sizing:border-box;font-family:Inter,Segoe UI,system-ui,Arial}
-body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#0f172a}
-.container{max-width:880px;margin:48px auto;padding:28px;background:var(--card);border-radius:12px;box-shadow:0 6px 30px rgba(12,38,63,.06)}
-header h1{margin:0 0 8px;font-size:1.6rem}
-.muted{color:var(--muted);margin:0 0 16px}
-#uploader{display:flex;gap:12px;align-items:center;margin:16px 0}
-#health{background:#f8fafc;padding:12px;border-radius:8px;border:1px solid #e6eef6}
-button{padding:8px 12px;border-radius:8px;border:1px solid #cfe7ff;background:#eaf6ff;cursor:pointer}
