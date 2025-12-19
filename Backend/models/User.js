@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema({
   licenseNumber: {
     type: String
   },
+  doctorCode: {
+    type: String,
+    unique: true,
+    sparse: true  // Allows multiple nulls (for patients)
+  },
   patients: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

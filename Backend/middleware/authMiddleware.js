@@ -18,6 +18,15 @@ const protect = async (req, res, next) => {
     }
 
     try {
+      // Check if JWT_SECRET is set
+      if (!process.env.JWT_SECRET) {
+        console.error('🚨 JWT_SECRET is not defined in environment variables!');
+        return res.status(500).json({
+          success: false,
+          message: 'Server configuration error'
+        });
+      }
+
       // Verify token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       
@@ -33,12 +42,15 @@ const protect = async (req, res, next) => {
 
       next();
     } catch (error) {
+      console.error('❌ Token verification failed:', error.message);
       return res.status(401).json({
         success: false,
-        message: 'Not authorized, token invalid'
+        message: 'Not authorized, token invalid',
+        error: error.message
       });
     }
   } catch (error) {
+    console.error('🚨 Auth middleware error:', error);
     res.status(500).json({
       success: false,
       message: 'Server error in authentication'

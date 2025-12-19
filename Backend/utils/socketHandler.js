@@ -26,8 +26,6 @@ const setupSocket = (io) => {
   });
 
   io.on('connection', (socket) => {
-    console.log(`🔌 User connected: ${socket.user.name} (${socket.user.userType})`);
-
     // Join personal room
     socket.join(`user_${socket.user._id}`);
 
@@ -69,7 +67,7 @@ const setupSocket = (io) => {
 
     // Handle disconnect
     socket.on('disconnect', () => {
-      console.log(`🔌 User disconnected: ${socket.user.name}`);
+      // User disconnected
     });
   });
 

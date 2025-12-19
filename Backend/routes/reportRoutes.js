@@ -5,7 +5,8 @@ const {
   getMyReports,
   getAllReports,
   getReportById,
-  addDoctorNotes
+  addDoctorNotes,
+  getPatientReports
 } = require('../controllers/reportController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
@@ -13,6 +14,7 @@ const upload = require('../middleware/uploadMiddleware');
 router.post('/upload', protect, authorize('patient'), upload.single('file'), uploadReport);
 router.get('/my-reports', protect, authorize('patient'), getMyReports);
 router.get('/all', protect, authorize('doctor'), getAllReports);
+router.get('/patient/:patientId', protect, authorize('doctor'), getPatientReports);
 router.get('/:id', protect, getReportById);
 router.put('/:id/notes', protect, authorize('doctor'), addDoctorNotes);
 

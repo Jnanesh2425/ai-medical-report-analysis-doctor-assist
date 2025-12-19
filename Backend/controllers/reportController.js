@@ -64,15 +64,11 @@ exports.uploadReport = async (req, res) => {
 // Background processing function
 async function processReport(reportId, filePath, fileType, reportType, user) {
   try {
-    console.log(`📄 Processing report: ${reportId}`);
-
     // Step 1: Extract text using OCR
-    console.log('🔍 Extracting text...');
     let extractedText = await ocrService.extractText(filePath, fileType);
     extractedText = ocrService.cleanText(extractedText);
 
     // Step 2: Analyze with AI
-    console.log('🤖 Analyzing with AI...');
     const analysis = await aiService.analyzeReport(extractedText, reportType);
 
     // Step 3: Update report with results
@@ -90,8 +86,6 @@ async function processReport(reportId, filePath, fileType, reportType, user) {
       },
       { new: true }
     ).populate('patient', 'name email assignedDoctor');
-
-    console.log(`✅ Report processed: ${reportId}, Risk: ${analysis.riskLevel}`);
 
     // Step 4: Create alert if high risk
     if (analysis.riskLevel === 'high' || analysis.abnormalities.length > 0) {
@@ -123,7 +117,6 @@ async function createAlert(report, user) {
     const patient = await User.findById(user._id).populate('assignedDoctor');
     
     if (!patient?.assignedDoctor) {
-      console.log('No assigned doctor for alert');
       return;
     }
 
@@ -142,8 +135,6 @@ async function createAlert(report, user) {
     if (global.io) {
       global.io.to(`doctor_${patient.assignedDoctor._id}`).emit('newAlert', alert);
     }
-
-    console.log(`🔔 Alert created for doctor: ${patient.assignedDoctor.name}`);
   } catch (error) {
     console.error('Alert creation failed:', error);
   }
@@ -285,6 +276,49 @@ exports.addDoctorNotes = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to add notes',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Get reports for a specific patient (Doctor)
+// @route   GET /api/reports/patient/:patientId
+// @access  Private (Doctor)
+exports.getPatientReports = async (req, res) => {
+  try {
+    const { patientId } = req.params;
+
+    // Verify the patient is assigned to this doctor
+    const patient = await User.findOne({
+      _id: patientId,
+      userType: 'patient',
+      assignedDoctor: req.user._id
+    });
+
+    if (!patient && req.user.userType === 'doctor') {
+      // Also check if patient is in doctor's patients array
+      const doctor = await User.findById(req.user._id);
+      if (!doctor.patients?.includes(patientId)) {
+        return res.status(403).json({
+          success: false,
+          message: 'This patient is not assigned to you'
+        });
+      }
+    }
+
+    const reports = await Report.find({ patient: patientId })
+      .sort({ createdAt: -1 })
+      .select('-extractedText');
+
+    res.status(200).json({
+      success: true,
+      count: reports.length,
+      reports
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch patient reports',
       error: error.message
     });
   }

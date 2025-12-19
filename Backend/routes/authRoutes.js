@@ -6,7 +6,8 @@ const {
   login,
   getMe,
   getMyPatients,
-  assignUnassignedPatients
+  assignUnassignedPatients,
+  generateDoctorCode
 } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -16,5 +17,6 @@ router.post('/login', login);
 router.get('/me', protect, getMe);
 router.get('/my-patients', protect, getMyPatients);
 router.post('/assign-patients', protect, assignUnassignedPatients);
+router.post('/generate-doctor-code', protect, generateDoctorCode);
 
 module.exports = router;

@@ -13,7 +13,7 @@ const generateToken = (id) => {
 // @access  Public
 exports.registerPatient = async (req, res) => {
   try {
-    const { name, email, password, phone, dateOfBirth } = req.body;
+    const { name, email, password, phone, dateOfBirth, doctorCode } = req.body;
 
     // Check if user exists
     const existingUser = await User.findOne({ email });
@@ -24,10 +24,22 @@ exports.registerPatient = async (req, res) => {
       });
     }
 
-    // Find a doctor to assign (simple round-robin for now)
-    const doctor = await User.findOne({ userType: 'doctor' }).sort({ patients: 1 });
+    // Find doctor - by code if provided, otherwise find any available doctor
+    let doctor = null;
+    if (doctorCode) {
+      doctor = await User.findOne({ doctorCode: doctorCode.toUpperCase(), userType: 'doctor' });
+      if (!doctor) {
+        return res.status(400).json({
+          success: false,
+          message: 'Invalid doctor code. Please check with your doctor.'
+        });
+      }
+    } else {
+      // Find a doctor to assign (simple round-robin)
+      doctor = await User.findOne({ userType: 'doctor' }).sort({ patients: 1 });
+    }
 
-    // Create patient
+    // Create patient with assigned doctor
     const user = await User.create({
       name,
       email,
@@ -38,7 +50,7 @@ exports.registerPatient = async (req, res) => {
       assignedDoctor: doctor?._id
     });
 
-    // Add patient to doctor's list
+    // Add patient to doctor's list if doctor exists
     if (doctor) {
       doctor.patients.push(user._id);
       await doctor.save();
@@ -56,7 +68,11 @@ exports.registerPatient = async (req, res) => {
         email: user.email,
         userType: user.userType,
         phone: user.phone,
-        assignedDoctor: doctor?.name
+        assignedDoctor: {
+          _id: doctor._id,
+          name: doctor.name,
+          specialization: doctor.specialization
+        }
       },
       token
     });
@@ -86,6 +102,9 @@ exports.registerDoctor = async (req, res) => {
       });
     }
 
+    // Generate unique doctor code (DR + random 6 digits)
+    const doctorCode = 'DR' + Math.random().toString().slice(2, 8);
+
     // Create doctor
     const user = await User.create({
       name,
@@ -93,6 +112,7 @@ exports.registerDoctor = async (req, res) => {
       password,
       specialization,
       licenseNumber,
+      doctorCode,
       userType: 'doctor'
     });
 
@@ -107,7 +127,8 @@ exports.registerDoctor = async (req, res) => {
         name: user.name,
         email: user.email,
         userType: user.userType,
-        specialization: user.specialization
+        specialization: user.specialization,
+        doctorCode: user.doctorCode
       },
       token
     });
@@ -167,6 +188,7 @@ exports.login = async (req, res) => {
         email: user.email,
         userType: user.userType,
         specialization: user.specialization,
+        doctorCode: user.doctorCode,
         assignedDoctor: user.assignedDoctor
       },
       token
@@ -282,6 +304,48 @@ exports.assignUnassignedPatients = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to assign patients',
+      error: error.message
+    });
+  }
+};
+
+// @desc    Generate doctor code for existing doctor (if missing)
+// @route   POST /api/auth/generate-doctor-code
+// @access  Private (Doctor)
+exports.generateDoctorCode = async (req, res) => {
+  try {
+    if (req.user.userType !== 'doctor') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only doctors can access this endpoint'
+      });
+    }
+
+    const doctor = await User.findById(req.user._id);
+    
+    // If doctor already has a code, return it
+    if (doctor.doctorCode) {
+      return res.status(200).json({
+        success: true,
+        message: 'Doctor code already exists',
+        doctorCode: doctor.doctorCode
+      });
+    }
+
+    // Generate new doctor code
+    const doctorCode = 'DR' + Math.random().toString().slice(2, 8);
+    doctor.doctorCode = doctorCode;
+    await doctor.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Doctor code generated successfully',
+      doctorCode: doctorCode
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to generate doctor code',
       error: error.message
     });
   }
