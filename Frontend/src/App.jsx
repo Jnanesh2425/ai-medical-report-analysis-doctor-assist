@@ -16,6 +16,7 @@ import DoctorReportViewer from './pages/DoctorReportViewer'
 import AlertsPage from './pages/AlertsPage'
 import TimelinePage from './pages/TimelinePage'
 import DoctorChatPatient from './pages/DoctorChatPatient'
+import ViewPatients from './pages/ViewPatients'
 
 import './App.css'
 
@@ -120,7 +121,7 @@ function App() {
               path="/doctor/patients"
               element={
                 <ProtectedRoute allowedUserType="doctor">
-                  <DoctorDashboard />
+                  <ViewPatients />
                 </ProtectedRoute>
               }
             />

@@ -20,10 +20,11 @@ const DoctorDashboard = () => {
     highRisk: 0,
     pendingAlerts: 0
   })
+  const [doctorCode, setDoctorCode] = useState(user?.doctorCode || '')
 
   useEffect(() => {
-    // First assign any unassigned patients to this doctor, then fetch data
-    assignAndFetchData()
+    // Generate doctor code if missing, then fetch data
+    initializeDashboard()
     setupSocket()
 
     return () => {
@@ -32,12 +33,23 @@ const DoctorDashboard = () => {
     }
   }, [])
 
-  const assignAndFetchData = async () => {
+  const initializeDashboard = async () => {
     try {
-      // Assign unassigned patients to this doctor
-      await api.post('/auth/assign-patients')
+      // Generate doctor code if not present
+      if (!user?.doctorCode) {
+        const response = await api.post('/auth/generate-doctor-code')
+        if (response.data.doctorCode) {
+          setDoctorCode(response.data.doctorCode)
+          // Update user in localStorage
+          const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
+          storedUser.doctorCode = response.data.doctorCode
+          localStorage.setItem('user', JSON.stringify(storedUser))
+        }
+      } else {
+        setDoctorCode(user.doctorCode)
+      }
     } catch (error) {
-      console.log('No unassigned patients or already assigned')
+      // Failed to generate doctor code
     }
     // Then fetch the data
     await fetchData()
@@ -103,8 +115,17 @@ const DoctorDashboard = () => {
       <div className="space-y-6">
         {/* Welcome Header */}
         <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-6 text-white">
-          <h1 className="text-2xl font-bold mb-2">Welcome, Dr. {user?.name}! 👨‍⚕️</h1>
-          <p className="text-green-100">Monitor your patients and review medical reports</p>
+          <div className="flex justify-between items-start">
+            <div>
+              <h1 className="text-2xl font-bold mb-2">Welcome, Dr. {user?.name}! 👨‍⚕️</h1>
+              <p className="text-green-100">Monitor your patients and review medical reports</p>
+            </div>
+            <div className="bg-white/20 rounded-lg px-4 py-2 text-center">
+              <p className="text-xs text-green-100">Your Doctor Code</p>
+              <p className="text-xl font-bold tracking-wider">{doctorCode || user?.doctorCode || 'Loading...'}</p>
+              <p className="text-xs text-green-200 mt-1">Share with patients to register</p>
+            </div>
+          </div>
         </div>
 
         {/* Stats Cards */}

@@ -21,4 +21,19 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 )
 
+// Handle response errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token may be invalid or expired
+      // Auto logout on 401 (uncomment if needed)
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('user')
+      // window.location.href = '/patient/login'
+    }
+    return Promise.reject(error)
+  }
+)
+
 export default api
